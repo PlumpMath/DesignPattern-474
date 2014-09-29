@@ -1,9 +1,15 @@
+import java.io.*;
+
 public class StringDisplay extends AbstractDisplay {
 	private String string;
 	private int width;
 	public StringDisplay(String string) {
 		this.string = string;
-		this.width = string.getBytes().length;
+		try {
+			this.width = string.getBytes("Shift_JIS").length;
+		} catch(UnsupportedEncodingException e) {
+			System.out.println("Unsuppoerted Encoding");
+		}
 	}
 	public void open() {
 		printLine();
